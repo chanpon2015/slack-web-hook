@@ -10,77 +10,15 @@ import (
 
 // WebHook is
 type WebHook struct {
-	URL string
-	Msg Message
+	URL    string
+	Msg    Message
+	Blocks []Block
 }
 
 // Message is
 type Message struct {
-	// Text   string  `json:"text"`
+	Msg    string  `json:"message,omitempty"`
 	Blocks []Block `json:"blocks"`
-	// Attachments []Attachment `json:"attachments"`
-}
-
-// AddButton is
-func (m *Message) AddButton() Message {
-	m.Blocks = append(m.Blocks, Block{
-		Type: "actions",
-		Elements: []Element{
-			{
-				Type: "button",
-				Text: Text{
-					Type: "plain_text",
-					Text: "test",
-				},
-				Value: "test",
-				URL:   "https://chanpon2015.com",
-			},
-		},
-	})
-	return *m
-}
-
-// Block is
-type Block struct {
-	BlockID  string    `json:"block_id"`
-	Type     string    `json:"type"`
-	Elements []Element `json:"elements"`
-}
-
-// Element is
-type Element struct {
-	Type  string `json:"type"`
-	Text  Text   `json:"text"`
-	Value string `json:"value"`
-	URL   string `json:"url"`
-}
-
-// Text is
-type Text struct {
-	Type  string `json:"type"`
-	Text  string `json:"text"`
-	Emoji bool   `json:"emoji"`
-}
-
-// Accessory is
-type Accessory struct {
-	Type  string `json:"type"`
-	Text  Text   `json:"text"`
-	Value string `json:"value"`
-}
-
-// Attachment is
-type Attachment struct {
-	Text    string    `json:"text"`
-	Actions *[]Action `json:"actions"`
-}
-
-// Action is
-type Action struct {
-	Name  string `json:"name"`
-	Text  string `json:"text"`
-	Type  string `json:"type"`
-	Value string `json:"value"`
 }
 
 var httpClient http.Client

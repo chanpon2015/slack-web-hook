@@ -17,7 +17,7 @@ type WebHook struct {
 
 // Message is
 type Message struct {
-	Msg    string  `json:"message,omitempty"`
+	Text   string  `json:"text,omitempty"`
 	Blocks []Block `json:"blocks"`
 }
 

@@ -3,7 +3,21 @@ package slack
 // Block is
 type Block struct {
 	Type     string     `json:"type"`
-	Elements *[]Element `json:"elements"`
+	Text     Text       `json:"text"`
+	Elements *[]Element `json:"elements,omitempty"`
+}
+
+// CreateSection is
+func (m *Message) CreateSection() *Block {
+	b := Block{
+		Type: "section",
+		Text: Text{
+			Type: "mrkdwn",
+			Text: "*section*",
+		},
+	}
+	m.Blocks = append(m.Blocks, b)
+	return &b
 }
 
 // CreateActions is
@@ -28,7 +42,7 @@ type Element struct {
 type Text struct {
 	Type  string `json:"type"`
 	Text  string `json:"text"`
-	Emoji bool   `json:"emoji"`
+	Emoji bool   `json:"emoji,omitempty"`
 }
 
 // AddButton is

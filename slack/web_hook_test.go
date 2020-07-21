@@ -11,11 +11,13 @@ import (
 func TestSend(t *testing.T) {
 	webHook := slack.WebHook{
 		URL: "",
-		Msg: slack.Message{},
+		Msg: slack.Message{
+			Text: "test, test, test",
+		},
 	}
-	actions := webHook.Msg.CreateActions()
-	actions.AddButton("test1", "", "").
-		AddButton("test2", "https://chanpon2015.com", "")
+	webHook.Msg.CreateSection()
+	// actions := webHook.Msg.CreateActions()
+	// actions.AddButton("test1", "", "")
 	data, err := json.Marshal(&webHook.Msg)
 	if err != nil {
 		t.Fatal(err)
